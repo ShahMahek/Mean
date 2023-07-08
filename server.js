@@ -5,6 +5,8 @@ const categoryRoutes = require("./app/src/routes/category.routes")
 const productRoutes = require("./app/src/routes/product.routes")
 const publicRoutes = require("./app/src/routes/public.routes")
 
+const sessionControllerDb= require("./app/src/controller/sessionControllerDb")
+
 const authMiddlerware = require("./app/src/middleware/auth.middleware")
 const app = express()
 
@@ -18,6 +20,9 @@ app.use("/admin",authMiddlerware,productRoutes)
 
 //public 
 app.use("/public",publicRoutes)
+app.post("/signup",sessionControllerDb.signup)
+app.get("/getallusers",sessionControllerDb.getAllusers)
+app.post("/login",sessionControllerDb.login)
 
 
 app.listen(9999)
