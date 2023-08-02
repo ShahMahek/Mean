@@ -1,4 +1,5 @@
 const express = require("express")
+const cors = require("cors")
 require("./app/src/config/dbConfig").getDbConnection()
 
 const categoryRoutes = require("./app/src/routes/category.routes")
@@ -13,6 +14,7 @@ const app = express()
 //middlerware 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+app.use(cors())
 
 //private ->authenticated 
 app.use("/admin",authMiddlerware,categoryRoutes)
