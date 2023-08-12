@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt")
 //signup 
 
 module.exports.signup =  async function(req,res){
+        
     //validation
     //email unique 
 
@@ -49,4 +50,33 @@ module.exports.getAllusers = function(req,res)
 {       UserModel.find().then(data=>{
                 res.json({data:data,msg:"user rect",rcode:200})
         })
+}
+
+
+module.exports.deleteUserById = function deleteUserById(req,res)
+{
+    let userId = req.params.userId
+
+    console.log("UserID = ",userId)
+
+    UserModel.deleteOne({_id:userId}).then((data)=>{
+      res.json({ "msg":"Data Deleted" , "data":data , "rcode":200})
+    }).catch((err)=>{
+      res.json({ "msg":"No Rec Found" , "data":err , "rcode":-9})
+    })
+ 
+    
+    
+}
+
+module.exports.getUserById = function getUserById(req,res)
+{
+    let userId = req.params.userId
+
+    UserModel.findById({_id:userId}).then((data)=>{
+      res.json({ "msg":"Data retrived" , "data":data , "rcode":200})
+    }).catch((err)=>{
+      res.json({ "msg":"No Rec Found" , "data":err , "rcode":-9})
+})
+
 }
