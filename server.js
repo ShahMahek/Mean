@@ -29,6 +29,7 @@ app.post("/login",sessionControllerDb.login)
 
 app.delete("/deleteuser/:userId",sessionControllerDb.deleteUserById)
 app.get("/getuserbyid/:userId",sessionControllerDb.getUserById)
+app.put("/updateuser",sessionControllerDb.updateUser)
 
 
 app.listen(9999)
