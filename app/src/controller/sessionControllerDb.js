@@ -86,7 +86,7 @@ module.exports.updateUser = async function (req, res)
 {
 
 
-  let user = await usersModel.findOne({ _id: req.body.userId })
+  let user = await UserModel.findOne({ _id: req.body.userId })
 
   console.log("user==> " + user);
   if(req.body.firstName)
